@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+    <div id="carousel" style="width: 100%; overflow: hidden; position: relative;"></div>
+        <div style="display: flex; transition: transform 0.5s ease-in-out;">
+            <img src="IMG-20250411-WA0003.jpg" alt="Slide 1" style="width: 100%; flex-shrink: 0;">
+            <img src="image2.jpg" alt="Slide 2" style="width: 100%; flex-shrink: 0;">
+            <img src="image3.jpg" alt="Slide 3" style="width: 100%; flex-shrink: 0;">
+        </div>
+        <button onclick="prevSlide()" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); background: rgba(0, 0, 0, 0.5); color: white; border: none; padding: 10px; cursor: pointer;">&#10094;</button>
+        <button onclick="nextSlide()" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); background: rgba(0, 0, 0, 0.5); color: white; border: none; padding: 10px; cursor: pointer;">&#10095;</button>
+    </div>
+    <script>
+        let currentIndex = 0;
+        const slides = document.querySelector("#carousel > div");
+        const totalSlides = slides.children.length;
+
+        function showSlide(index) {
+            const width = slides.children[0].clientWidth;
+            slides.style.transform = `translateX(-${index * width}px)`;
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalSlides - 1;
+            showSlide(currentIndex);
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex < totalSlides - 1) ? currentIndex + 1 : 0;
+            showSlide(currentIndex);
+        }
+    </script>
+    <nav style="background-color: navy; color: white; display: flex; align-items: center; justify-content: space-between; padding: 10px;">
+        <div style="display: flex; align-items: center;">
+            <img src="logo.png" alt="Logo" style="height: 40px; margin-right: 10px;">
+            <h1 style="margin: 0; font-size: 1.5rem;">My Website</h1>
+        </div>
+        <ul style="list-style: none; display: flex; gap: 15px; margin: 0; padding: 0;">
+            <li><a href="#" style="color: white; text-decoration: none;">Home</a></li>
+            <li><a href="#" style="color: white; text-decoration: none;">About Us</a></li>
+            <li><a href="#" style="color: white; text-decoration: none;">Our Products</a></li>
+            <li><a href="#" style="color: white; text-decoration: none;">Special Offers</a></li>
+            <li><a href="#" style="color: white; text-decoration: none;">New Arrivals</a></li>
+            <li><a href="#" style="color: white; text-decoration: none;">Contact Us</a></li>
+        </ul>
+        <div style="display: flex; align-items: center;">
+            <input type="text" placeholder="Search..." style="padding: 5px; border-radius: 5px; border: none; margin-right: 10px;">
+            <button style="padding: 5px 10px; background-color: white; color: navy; border: none; border-radius: 5px; cursor: pointer;">Search</button>
+        </div>
+    </nav>
+    
+</body>
+</html>
